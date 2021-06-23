@@ -1,6 +1,6 @@
 # Oh no, my binaries!
 
-This is a playground to test solutions to the problem posed in an upcoming blog post.
+This is a playground to test solutions to the problem posed in an upcoming [blog post](https://whatthefox.dev/posts/oh-no-my-binaries/).
 
 ## Usage
 

@@ -14,6 +14,10 @@ Some useful tooling is on the `solution-1` branch.
 
 `make clean`: Remove the local images and containers.
 
+`compile.sh`: Compiles a file with `gcc` in a container matching the simulator environment.
+
+`hex.sh`: Converts a binary to a shell script which will recreate the binary on the target system with only `echo` calls.
+
 ## Requirements
 
 * A container interface, such as `docker` or `podman`

@@ -1,6 +1,7 @@
 .PHONY: build run connect clean
 
 EMULATOR_IMAGE=ohnomybinaries
+UTIL_IMAGE=ohnomybinaries-util
 LABEL=ohnomybinaries
 CNI?=docker
 PORT=$(shell sh -c "$(CNI) ps -f label=$(LABEL) --format={{.Ports}} | grep -oP '(?<=:)([0-9]+)'")
@@ -20,5 +21,4 @@ connect:
 clean:
 	$(CNI) ps -a -f label=$(LABEL) --format={{.ID}} | xargs $(CNI) rm || continue
 	$(CNI) rmi $(EMULATOR_IMAGE) $(UTIL_IMAGE)
-
 

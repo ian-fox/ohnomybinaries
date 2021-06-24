@@ -13,12 +13,12 @@ SESSION_PID=$(ps -a | grep ohno | grep -o '[0123456789]*' | head -1)
 echo "Connected! PID is $SESSION_PID. Deleting binaries..."
 
 # Make a pipe because once we delete the binaries we won't be able to use sleep
-mkfifo /sleep
+mkfifo /.simulator/sleep
 
 rm -r /bin /dev /srv /sbin /usr /opt 2>/dev/null
 
 echo "Good luck!"
 while true; do
-  read -t 1 <>/sleep
+  read -t 1 <>/.simulator/sleep
 done
 

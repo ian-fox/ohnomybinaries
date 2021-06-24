@@ -9,7 +9,7 @@ RUN echo "PasswordAuthentication no" >> /etc/ssh/ssdh_config
 RUN echo -e "cd / && sudo rm -rf /bin /dev /srv /sbin /usr /opt 2>/dev/null" > /home/ohno/.profile
 RUN echo -e "ohno ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-COPY entrypoint.sh /.simulator/entrypoint
+COPY emulator/entrypoint.sh /.simulator/entrypoint
 CMD /.simulator/entrypoint
 EXPOSE 22
 

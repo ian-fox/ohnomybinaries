@@ -1,6 +1,8 @@
 # Oh no, my binaries!
 
-This is a playground to test solutions to the problem posed in an upcoming [blog post](https://whatthefox.dev/posts/oh-no-my-binaries/).
+This is a playground to test solutions to the problem posed in this [blog post](https://whatthefox.dev/posts/oh-no-my-binaries/).
+
+Some useful tooling is on the `solution-1` branch.
 
 ## Usage
 
@@ -10,9 +12,7 @@ This is a playground to test solutions to the problem posed in an upcoming [blog
 
 `make connect`: Connect to the container through ssh. You will enter as the user `ohno` with password `ohno`.
 
-`make clean_containers`: Remove exited containers. I kept them by default in case you want to investigate what went wrong after a failed attempt.
-
-`make clean`: Remove the local image and all containers.
+`make clean`: Remove the local images and containers.
 
 ## Requirements
 

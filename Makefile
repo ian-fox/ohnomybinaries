@@ -1,6 +1,6 @@
-.PHONY: build run connect clean clean_containers
+.PHONY: build run connect clean
 
-IMAGE_NAME=ohnomybinaries
+EMULATOR_IMAGE=ohnomybinaries
 LABEL=ohnomybinaries
 CNI?=docker
 PORT=$(shell sh -c "$(CNI) ps -f label=$(LABEL) --format={{.Ports}} | grep -oP '(?<=:)([0-9]+)'")
@@ -9,16 +9,16 @@ PORT=$(shell sh -c "$(CNI) ps -f label=$(LABEL) --format={{.Ports}} | grep -oP '
 	ssh-keygen -t ed25519 -f .id_ed25519 -P ''
 
 build: .id_ed25519
-	$(CNI) build -t $(IMAGE_NAME) .
+	$(CNI) build -t $(EMULATOR_IMAGE) -f emulator/Dockerfile .
 
 run:
-	$(CNI) run -it -p 127.0.0.1::22 -l $(LABEL) $(IMAGE_NAME)
+	$(CNI) run --rm -it -p 127.0.0.1::22 -l $(LABEL) $(EMULATOR_IMAGE)
 
 connect:
 	ssh ohno@localhost -p $(PORT) -o "LogLevel QUIET" -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking no" -i .id_ed25519
 
-clean_containers:
+clean:
 	$(CNI) ps -a -f label=$(LABEL) --format={{.ID}} | xargs $(CNI) rm || continue
+	$(CNI) rmi $(EMULATOR_IMAGE) $(UTIL_IMAGE)
 
-clean: clean_containers
-	$(CNI) rmi $(IMAGE_NAME)
+
